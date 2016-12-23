@@ -16,7 +16,7 @@
 
 package me.parviainen.wheeelaccessibility.utils;
 
-import com.android.talkback.SpeechController;
+//import com.android.talkback.SpeechController;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -40,8 +40,8 @@ import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.utils.compat.provider.SettingsCompatUtils.SecureCompatUtils;
-import com.android.utils.compat.speech.tts.TextToSpeechCompatUtils;
+import me.parviainen.wheeelaccessibility.utils.compat.provider.SettingsCompatUtils.SecureCompatUtils;
+import me.parviainen.wheeelaccessibility.utils.compat.speech.tts.TextToSpeechCompatUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -340,12 +340,12 @@ public class FailoverTextToSpeech {
             }
         }
 
-        bundle.putInt(SpeechController.SpeechParam.PITCH, (int)(pitch*100));
+        /*bundle.putInt(SpeechController.SpeechParam.PITCH, (int)(pitch*100));
         bundle.putInt(SpeechController.SpeechParam.RATE, (int)(rate*100));
         bundle.putInt(Engine.KEY_PARAM_STREAM, stream);
         bundle.putFloat(SpeechController.SpeechParam.VOLUME, volume);
 
-        ensureQueueFlush();
+        ensureQueueFlush();*/
         return mTts.speak(text, SPEECH_FLUSH_ALL, bundle, utteranceId);
     }
 
@@ -374,13 +374,13 @@ public class FailoverTextToSpeech {
         TextToSpeechUtils.attemptTtsShutdown(mTts);
 
         if (mTempTts != null) {
-            LogUtils.log(SpeechController.class, Log.ERROR,
-                    "Can't start TTS engine %s while still loading previous engine", engine);
+            //LogUtils.log(SpeechController.class, Log.ERROR,
+             //       "Can't start TTS engine %s while still loading previous engine", engine);
             return;
         }
 
-        LogUtils.logWithLimit(SpeechController.class, Log.INFO, mTtsFailures, MAX_LOG_MESSAGES,
-                "Switching to TTS engine: %s", engine);
+        //LogUtils.logWithLimit(SpeechController.class, Log.INFO, mTtsFailures, MAX_LOG_MESSAGES,
+        //        "Switching to TTS engine: %s", engine);
 
         mTempTtsEngine = engine;
         mTempTts = new TextToSpeech(mContext, mTtsChangeListener, engine);
@@ -393,8 +393,8 @@ public class FailoverTextToSpeech {
      * @param failedEngine The package name of the engine to switch from.
      */
     private void attemptTtsFailover(String failedEngine) {
-        LogUtils.logWithLimit(SpeechController.class, Log.ERROR, mTtsFailures, MAX_LOG_MESSAGES,
-                "Attempting TTS failover from %s", failedEngine);
+        //LogUtils.logWithLimit(SpeechController.class, Log.ERROR, mTtsFailures, MAX_LOG_MESSAGES,
+        //        "Attempting TTS failover from %s", failedEngine);
 
         mTtsFailures++;
 
@@ -462,7 +462,7 @@ public class FailoverTextToSpeech {
             setAudioAttributesApi21();
         }
 
-        LogUtils.log(SpeechController.class, Log.INFO, "Switched to TTS engine: %s", tempTtsEngine);
+        // LogUtils.log(SpeechController.class, Log.INFO, "Switched to TTS engine: %s", tempTtsEngine);
 
         for (FailoverTtsListener mListener : mListeners) {
             mListener.onTtsInitialized(isSwitchingEngines);

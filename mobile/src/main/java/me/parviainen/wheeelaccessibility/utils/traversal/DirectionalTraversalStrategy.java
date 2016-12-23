@@ -20,8 +20,8 @@ import android.graphics.Rect;
 import android.support.v4.os.BuildCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 
-import com.android.utils.AccessibilityNodeInfoUtils;
-import com.android.utils.NodeFilter;
+import me.parviainen.wheeelaccessibility.utils.AccessibilityNodeInfoUtils;
+import me.parviainen.wheeelaccessibility.utils.NodeFilter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

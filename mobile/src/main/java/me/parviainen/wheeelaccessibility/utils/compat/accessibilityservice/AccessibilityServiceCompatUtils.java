@@ -21,7 +21,7 @@ import android.os.Build;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
-import com.android.utils.WindowManager;
+import me.parviainen.wheeelaccessibility.utils.WindowManager;
 
 import java.util.List;
 

@@ -19,7 +19,7 @@ package me.parviainen.wheeelaccessibility.utils.traversal;
 import android.graphics.Rect;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.Log;
-import com.android.utils.AccessibilityNodeInfoUtils;
+import me.parviainen.wheeelaccessibility.utils.AccessibilityNodeInfoUtils;
 import me.parviainen.wheeelaccessibility.utils.LogUtils;
 
 import java.util.HashMap;

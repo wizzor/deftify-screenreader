@@ -26,7 +26,7 @@ import android.content.pm.ServiceInfo;
 import android.provider.Settings.Secure;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
-import com.android.utils.compat.provider.SettingsCompatUtils;
+import me.parviainen.wheeelaccessibility.utils.compat.provider.SettingsCompatUtils;
 
 import java.util.List;
 

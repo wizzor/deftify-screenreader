@@ -56,43 +56,7 @@ public class WheeelAccessibilityService extends AccessibilityService {
 
         source.getViewIdResourceName();
 
-        // Grab the parent of the view that fired the event.
-        AccessibilityNodeInfo rowNode = getListItemNodeInfo(source);
-        if (rowNode == null) {
-            return;
-        }
-
-        // Using this parent, get references to both child nodes, the label and the checkbox.
-        AccessibilityNodeInfo labelNode = rowNode.getChild(0);
-        if (labelNode == null) {
-            rowNode.recycle();
-            return;
-        }
-
-        AccessibilityNodeInfo completeNode = rowNode.getChild(1);
-        if (completeNode == null) {
-            rowNode.recycle();
-            return;
-        }
-
-        // Determine what the task is and whether or not it's complete, based on
-        // the text inside the label, and the state of the check-box.
-        if (rowNode.getChildCount() < 2 || !rowNode.getChild(1).isCheckable()) {
-            rowNode.recycle();
-            return;
-        }
-
-        CharSequence taskLabel = labelNode.getText();
-        final boolean isComplete = completeNode.isChecked();
-        String completeStr = null;
-
-        if (isComplete) {
-            completeStr = "Something";
-        } else {
-            completeStr = "Something else";
-        }
-        String reportStr = taskLabel + completeStr;
-        //speakToUser(reportStr);
+        // Grab the parent of the view that fired the event
     }
 
 

@@ -17,7 +17,7 @@
 package me.parviainen.wheeelaccessibility.utils.traversal;
 
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
-import com.android.utils.AccessibilityNodeInfoRef;
+import me.parviainen.wheeelaccessibility.utils.AccessibilityNodeInfoRef;
 
 import java.util.Map;
 

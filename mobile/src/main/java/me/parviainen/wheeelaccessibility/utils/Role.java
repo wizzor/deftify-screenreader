@@ -9,7 +9,7 @@ import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-// import com.android.talkback.R;
+import me.parviainen.wheeelaccessibility.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

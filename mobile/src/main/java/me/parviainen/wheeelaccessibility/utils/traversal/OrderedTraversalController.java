@@ -22,7 +22,7 @@ import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import me.parviainen.wheeelaccessibility.utils.LogUtils;
-import com.android.utils.WebInterfaceUtils;
+import me.parviainen.wheeelaccessibility.utils.WebInterfaceUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

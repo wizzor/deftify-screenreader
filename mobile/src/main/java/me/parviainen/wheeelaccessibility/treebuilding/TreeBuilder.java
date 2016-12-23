@@ -31,8 +31,8 @@ import me.parviainen.wheeelaccessibility.SwitchAccessNodeCompat;
 import me.parviainen.wheeelaccessibility.SwitchAccessPreferenceActivity;
 import me.parviainen.wheeelaccessibility.SwitchAccessWindowInfo;
 // import com.android.talkback.R;
-import com.android.utils.SharedPreferencesUtils;
-import com.android.utils.traversal.OrderedTraversalController;
+import me.parviainen.wheeelaccessibility.utils.SharedPreferencesUtils;
+import me.parviainen.wheeelaccessibility.utils.traversal.OrderedTraversalController;
 
 import java.util.ArrayList;
 import java.util.Arrays;

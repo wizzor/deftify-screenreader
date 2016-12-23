@@ -27,9 +27,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.support.v4.os.BuildCompat;
 import android.text.TextUtils;
-
-// import com.android.talkback.R;
-import com.android.utils.SharedPreferencesUtils;
+import me.parviainen.wheeelaccessibility.R;
+import me.parviainen.wheeelaccessibility.utils.SharedPreferencesUtils;
+import me.parviainen.wheeelaccessibility.utils.HelpUtils;
 
 import android.os.Bundle;
 import java.util.ArrayList;

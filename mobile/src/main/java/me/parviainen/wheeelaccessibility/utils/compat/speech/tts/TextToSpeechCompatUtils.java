@@ -17,7 +17,7 @@
 package me.parviainen.wheeelaccessibility.utils.compat.speech.tts;
 
 import android.speech.tts.TextToSpeech;
-import com.android.utils.compat.CompatUtils;
+import me.parviainen.wheeelaccessibility.utils.compat.CompatUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

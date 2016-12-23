@@ -23,7 +23,7 @@ import android.text.TextUtils;
 import me.parviainen.wheeelaccessibility.AccessibilityNodeActionNode;
 import me.parviainen.wheeelaccessibility.OptionScanNode;
 import me.parviainen.wheeelaccessibility.OptionScanSelectionNode;
-import com.android.utils.traversal.OrderedTraversalController;
+import me.parviainen.wheeelaccessibility.utils.traversal.OrderedTraversalController;
 
 import java.io.PrintStream;
 import java.util.*;

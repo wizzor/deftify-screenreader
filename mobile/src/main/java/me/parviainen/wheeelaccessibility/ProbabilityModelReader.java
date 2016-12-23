@@ -18,7 +18,7 @@ package me.parviainen.wheeelaccessibility;
 
 import android.content.Context;
 import android.text.TextUtils;
-import com.android.utils.AccessibilityNodeInfoUtils;
+import me.parviainen.wheeelaccessibility.utils.AccessibilityNodeInfoUtils;
 
 import java.util.HashMap;
 import java.util.HashSet;

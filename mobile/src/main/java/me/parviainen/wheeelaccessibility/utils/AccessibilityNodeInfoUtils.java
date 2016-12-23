@@ -37,8 +37,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import me.parviainen.wheeelaccessibility.utils.compat.CompatUtils;
-import me.parviainen.wheeelaccessibility.utils.labeling.CustomLabelManager;
-import me.parviainen.wheeelaccessibility.utils.labeling.Label;
 import me.parviainen.wheeelaccessibility.utils.traversal.TraversalStrategy;
 import me.parviainen.wheeelaccessibility.utils.traversal.TraversalStrategyUtils;
 
@@ -167,34 +165,6 @@ public class AccessibilityNodeInfoUtils {
         // This class is not instantiable.
     }
 
-    /**
-     * Gets the text of a <code>node</code> by returning the content description
-     * (if available) or by returning the text.
-     *
-     * @param node The node.
-     * @return The node text.
-     */
-    public static CharSequence getNodeText(AccessibilityNodeInfoCompat node) {
-        if (node == null) {
-            return null;
-        }
-
-        // Prefer content description over text.
-        // TODO: Why are we checking the trimmed length?
-        final CharSequence contentDescription = node.getContentDescription();
-        if (!TextUtils.isEmpty(contentDescription)
-                && (TextUtils.getTrimmedLength(contentDescription) > 0)) {
-            return contentDescription;
-        }
-
-        final CharSequence text = node.getText();
-        if (!TextUtils.isEmpty(text)
-                && (TextUtils.getTrimmedLength(text) > 0)) {
-            return text;
-        }
-
-        return null;
-    }
 
     public static List<AccessibilityActionCompat> getCustomActions(
             AccessibilityNodeInfoCompat node) {
@@ -215,31 +185,6 @@ public class AccessibilityNodeInfoUtils {
         return action.getId() > SYSTEM_ACTION_MAX;
     }
 
-    /**
-     * Gets the text of a <code>node</code> by returning the content description
-     * (if available) or by returning the text. Will use the specified
-     * <code>CustomLabelManager</code> as a fall back if both are null.
-     *
-     * @param node The node.
-     * @param labelManager The label manager.
-     * @return The node text.
-     */
-    public static CharSequence getNodeText(AccessibilityNodeInfoCompat node,
-            CustomLabelManager labelManager) {
-        CharSequence text = AccessibilityNodeInfoUtils.getNodeText(node);
-        if (!TextUtils.isEmpty(text)) {
-            return text;
-        }
-
-        if (labelManager != null && labelManager.isInitialized()) {
-            Label label = labelManager.getLabelForViewIdFromCache(
-                    node.getViewIdResourceName());
-            if (label != null) {
-                return label.getText();
-            }
-        }
-        return null;
-    }
 
     /**
      * Returns the root node of the tree containing {@code node}.
@@ -1594,6 +1539,28 @@ public class AccessibilityNodeInfoUtils {
         }
 
         return new AccessibilityNodeInfoCompat(nativeAnchor);
+    }
+
+    public static CharSequence getNodeText(AccessibilityNodeInfoCompat node) {
+        if (node == null) {
+            return null;
+        }
+
+        // Prefer content description over text.
+        // TODO: Why are we checking the trimmed length?
+        final CharSequence contentDescription = node.getContentDescription();
+        if (!TextUtils.isEmpty(contentDescription)
+                && (TextUtils.getTrimmedLength(contentDescription) > 0)) {
+            return contentDescription;
+        }
+
+        final CharSequence text = node.getText();
+        if (!TextUtils.isEmpty(text)
+                && (TextUtils.getTrimmedLength(text) > 0)) {
+            return text;
+        }
+
+        return null;
     }
 
     /**

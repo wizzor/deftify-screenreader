@@ -20,7 +20,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
-import com.android.utils.traversal.NodeFocusFinder;
+import me.parviainen.wheeelaccessibility.utils.traversal.NodeFocusFinder;
 
 /**
  * Functions to find focus.

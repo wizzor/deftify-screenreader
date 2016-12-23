@@ -17,7 +17,7 @@
 package me.parviainen.wheeelaccessibility.utils;
 
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
-import com.android.utils.traversal.ReorderedChildrenIterator;
+import me.parviainen.wheeelaccessibility.utils.traversal.ReorderedChildrenIterator;
 
 import java.util.HashSet;
 import java.util.Iterator;

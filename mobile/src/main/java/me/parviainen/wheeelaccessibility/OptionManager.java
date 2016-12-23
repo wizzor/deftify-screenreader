@@ -27,7 +27,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 // import com.android.talkback.R;
-import com.android.utils.SharedPreferencesUtils;
+import me.parviainen.wheeelaccessibility.utils.SharedPreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
