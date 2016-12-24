@@ -62,6 +62,8 @@ public class SwitchAccessService extends AccessibilityService
     private KeyboardEventManager mKeyboardEventManager;
     private MainTreeBuilder mMainTreeBuilder;
 
+    static final String TAG = "WheeelAccSRV-2";
+
     @Override
     public boolean onUnbind(Intent intent) {
         if (mAutoScanController != null) {
@@ -121,6 +123,7 @@ public class SwitchAccessService extends AccessibilityService
     @Override
     protected void onServiceConnected() {
         sInstance = this;
+        Log.v(TAG, "onServiceConnected");
         mOverlayController = new OverlayController(new SimpleOverlay(this));
         mOverlayController.configureOverlay();
         mOptionManager = new OptionManager(mOverlayController);

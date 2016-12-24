@@ -164,32 +164,32 @@
             android:key="@string/pref_category_scan_mappings_key"
             android:title="@string/title_pref_category_scan_key_mappings" >
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_auto_scan_key"
                 android:title="@string/title_pref_category_auto_scan" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_reverse_auto_scan_key"
                 android:title="@string/action_name_reverse_auto_scan" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_click_key"
                 android:title="@string/action_name_click" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_next_key"
                 android:title="@string/action_name_next" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_switch_3_key" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_switch_4_key" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_switch_5_key" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_previous_key"
                 android:title="@string/action_name_previous" />
 
@@ -199,35 +199,35 @@
             android:key="@string/pref_category_action_mappings_key"
             android:title="@string/title_pref_category_key_mappings" >
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_long_click_key"
                 android:title="@string/action_name_long_click" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_scroll_forward_key"
                 android:title="@string/action_name_scroll_forward" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_scroll_backward_key"
                 android:title="@string/action_name_scroll_backward" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_back_key"
                 android:title="@string/global_action_back" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_home_key"
                 android:title="@string/global_action_home" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_notifications_key"
                 android:title="@string/global_action_notifications" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_quick_settings_key"
                 android:title="@string/global_action_quick_settings" />
 
-        <com.android.switchaccess.KeyComboPreference
+        <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_overview_key"
                 android:title="@string/global_action_overview" />
 

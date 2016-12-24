@@ -7,4 +7,4 @@
     android:canRetrieveWindowContent="true"
     android:notificationTimeout="0"
     android:description="@string/switch_access_service_description"
-    android:settingsActivity="com.android.switchaccess.SwitchAccessPreferenceActivity" />
+    android:settingsActivity="me.parviainen.wheeelaccessibility.SwitchAccessPreferenceActivity" />

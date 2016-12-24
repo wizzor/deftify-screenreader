@@ -106,6 +106,13 @@ public class MainTreeBuilder extends TreeBuilder {
         return mBuilderForViews.addViewHierarchyToTree(root, treeToBuildOn);
     }
 
+    /**
+     *
+     * @param actionList The items that should be in the context menu
+     *  Uses whichever builder is enabled to create the context menu.
+     * @return
+     */
+
     @Override
     public OptionScanNode buildContextMenu(List<? extends ContextMenuItem> actionList) {
         TreeBuilder builder = mOptionScanningEnabled ?

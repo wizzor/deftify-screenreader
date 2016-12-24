@@ -48,8 +48,8 @@ public abstract class BinaryTreeBuilder extends TreeBuilder {
         List<AccessibilityNodeActionNode> actionNodes = getCompatActionNodes(compat);
         if (actionNodes.size() == 1) {
             tree = new OptionScanSelectionNode(actionNodes.get(0), tree);
-        } else if (actionNodes.size() > 1) {
-            tree = new OptionScanSelectionNode(buildContextMenu(actionNodes), tree);
+        //} else if (actionNodes.size() > 1) {
+        //    tree = new OptionScanSelectionNode(buildContextMenu(actionNodes), tree);
         }
         return tree;
     }

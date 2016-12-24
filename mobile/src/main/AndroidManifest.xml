@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.parviainen.wheeelaccessibility">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,13 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/TalkBackSettings">
 
-        <service android:name=".WheeelAccessibilityService"
+
+
+        <service android:name=".SwitchAccessService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:canRetrieveWindowContent="true">
+
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
-        </service>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/switch_access_accessibilityservice" />
+            </service>
+
+        <activity
+            android:name="me.parviainen.wheeelaccessibility.SwitchAccessPreferenceActivity"
+            android:exported="false"
+            android:label="@string/switch_access_preferences_title"
+            android:theme="@style/TalkBackSettings"
+            android:directBootAware="true"
+            android:enabled="true" >
+        </activity>
 
     </application>
 
