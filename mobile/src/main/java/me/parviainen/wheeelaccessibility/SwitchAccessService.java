@@ -178,7 +178,10 @@ public class SwitchAccessService extends AccessibilityService
 
     private void rebuildOptionScanTree() {
         OptionScanNode globalContextMenuTree =
-                mMainTreeBuilder.buildContextMenu(GlobalActionNode.getGlobalActionList(this));
+                mMainTreeBuilder.buildContextMenu(null);
+        // Change the above argument to GlobalActionNode.getGlobalActionList(this) to get the global menu back.
+
+
         mOptionManager.clearFocusIfNewTree(mMainTreeBuilder.addWindowListToTree(
                 SwitchAccessWindowInfo.convertZOrderWindowList(getWindows()),
                 globalContextMenuTree));

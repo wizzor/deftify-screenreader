@@ -2,6 +2,7 @@
     package="me.parviainen.wheeelaccessibility">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,7 @@
 
         <service android:name=".SwitchAccessService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            
             android:canRetrieveWindowContent="true">
 
             <intent-filter>

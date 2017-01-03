@@ -47,8 +47,11 @@ public abstract class BinaryTreeBuilder extends TreeBuilder {
                                              OptionScanNode tree) {
         List<AccessibilityNodeActionNode> actionNodes = getCompatActionNodes(compat);
         if (actionNodes.size() == 1) {
+            // Apparently action nodes are actionable children within one node.
+            // This is selected if there is just one
             tree = new OptionScanSelectionNode(actionNodes.get(0), tree);
         } else if (actionNodes.size() > 1) {
+            // And this is returned if there are multiple selectable child nodes
             tree = new OptionScanSelectionNode(buildContextMenu(actionNodes), tree);
         }
         return tree;
