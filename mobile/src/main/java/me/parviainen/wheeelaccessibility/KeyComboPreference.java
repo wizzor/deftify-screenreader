@@ -322,12 +322,16 @@ public class KeyComboPreference extends DialogPreference implements DialogInterf
     }
 
     private boolean isKeyCodeToIgnore(int keyCode) {
-        return ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
+        return false;
+
+                /* Original ignore keys list
+
+                ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
                 || (keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
                 || (keyCode == KeyEvent.KEYCODE_DPAD_UP)
                 || (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT)
                 || (keyCode == KeyEvent.KEYCODE_BACK)
-                || (keyCode == KeyEvent.KEYCODE_DPAD_LEFT));
+                || (keyCode == KeyEvent.KEYCODE_DPAD_LEFT));*/
     }
 
     private void updateKeyListAdapter() {
