@@ -186,4 +186,16 @@ public class SwitchAccessService extends AccessibilityService
                 SwitchAccessWindowInfo.convertZOrderWindowList(getWindows()),
                 globalContextMenuTree));
     }
+
+    public void showGlobalMenu() {
+        OptionScanNode globalContextMenuTree =
+                mMainTreeBuilder.buildContextMenu(GlobalActionNode.getGlobalActionList(this));
+        // Change the above argument to GlobalActionNode.getGlobalActionList(this) to get the global menu back.
+
+        mOptionManager.resetFocusToNewTree(globalContextMenuTree);
+
+        /*mOptionManager.clearFocusIfNewTree(mMainTreeBuilder.addWindowListToTree(
+                SwitchAccessWindowInfo.convertZOrderWindowList(getWindows()),
+                globalContextMenuTree));*/
+    }
 }

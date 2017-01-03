@@ -181,7 +181,9 @@
                 android:title="@string/action_name_next" />
 
         <me.parviainen.wheeelaccessibility.KeyComboPreference
-                android:key="@string/pref_key_mapped_to_switch_3_key" />
+                android:key="@string/pref_key_mapped_to_switch_3_key"
+                android:title="Menu"
+            />
 
         <me.parviainen.wheeelaccessibility.KeyComboPreference
                 android:key="@string/pref_key_mapped_to_switch_4_key" />

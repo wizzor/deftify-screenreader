@@ -30,8 +30,8 @@ public enum KeyboardBasedGlobalAction {
     NOTIFICATIONS(R.string.pref_key_mapped_to_notifications_key,
             AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS),
     QUICK_SETTINGS(R.string.pref_key_mapped_to_quick_settings_key,
-            AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS),
-    OVERVIEW(R.string.pref_key_mapped_to_overview_key, AccessibilityService.GLOBAL_ACTION_RECENTS);
+            AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
+    //OVERVIEW(R.string.pref_key_mapped_to_overview_key, AccessibilityService.GLOBAL_ACTION_RECENTS);
 
     private final int mPreferenceResId;
 

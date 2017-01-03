@@ -122,6 +122,24 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
         }
     }
 
+
+    public void resetFocusToNewTree(OptionScanNode newTreeRoot) {
+        if (mRootNode == newTreeRoot) {
+            return;
+        }
+        if (newTreeRoot != null && newTreeRoot.equals(mRootNode)) {
+            newTreeRoot.recycle();
+            return;
+        }
+        // new tree is different
+        clearFocus();
+        if (mRootNode != null) {
+            mRootNode.recycle();
+        }
+        mRootNode = newTreeRoot;
+        selectOption(0);
+    }
+
     /**
      * Traverse to the child node of the current node that has the specified index and take
      * whatever action is appropriate for that node. If nothing currently has focus, any

@@ -36,7 +36,7 @@ public class KeyboardEventManager {
 
     private final List<KeyboardAction> mKeyboardActions = new ArrayList<>();
 
-    public KeyboardEventManager(final AccessibilityService service,
+    public KeyboardEventManager(final SwitchAccessService service,
             final OptionManager optionManager, final AutoScanController autoScanController) {
         for (final KeyboardBasedGlobalAction globalAction : KeyboardBasedGlobalAction.values()) {
             mKeyboardActions
@@ -87,10 +87,10 @@ public class KeyboardEventManager {
                     }
                 }));
         mKeyboardActions
-                .add(new KeyboardAction(R.string.pref_key_mapped_to_switch_3_key, new Runnable() {
+                .add(new KeyboardAction(R.string.pref_key_mapped_to_overview_key, new Runnable() {
                     @Override
                     public void run() {
-                        optionManager.selectOption(2);
+                        service.showGlobalMenu();
                     }
                 }));
         mKeyboardActions
