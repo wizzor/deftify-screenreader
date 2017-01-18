@@ -117,6 +117,25 @@ public class OptionScanSelectionNode implements OptionScanNode {
         return mChildren[index];
     }
 
+    public int shouldScroll(SwitchAccessNodeCompat compat){
+        if(compat != null) {
+            return 4096;
+        }
+        return 0;
+    }
+
+    public SwitchAccessNodeCompat getScrollableParent(SwitchAccessNodeCompat compat) {
+        while (compat != null) {
+            if (compat.isScrollable()) {
+                return compat;
+            }
+            SwitchAccessNodeCompat parent = compat.getParent();
+            compat.recycle();
+            compat = parent;
+        }
+        return null;
+    }
+
     public void showSelections(OverlayController overlayController, Paint[] paints) {
         /* Display the options for the children. In addition if there are global views in the
          * overlay, such as the menu button when option scanning in enabled, highlight them as

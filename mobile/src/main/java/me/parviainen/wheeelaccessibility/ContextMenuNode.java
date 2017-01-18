@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 // import com.android.talkback.R;
 
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -46,6 +47,8 @@ import java.util.Set;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class ContextMenuNode extends OptionScanSelectionNode implements ContextMenuItem {
 
+    private final String TAG = "WAS-ContextMenuNode";
+
     public ContextMenuNode(
             ContextMenuItem child0, ContextMenuItem child1, ContextMenuItem... children) {
         super(child0, child1, children);
@@ -56,6 +59,7 @@ public class ContextMenuNode extends OptionScanSelectionNode implements ContextM
      */
     @Override
     public void showSelections(final OverlayController overlayController, final Paint[] paints) {
+        Log.v(TAG, "ShowSelections - drawing ContextMenu");
         Context context = overlayController.getContext();
         /* Create a layout to hold the Views */
         LinearLayout menuLayout = new LinearLayout(context);
@@ -90,7 +94,7 @@ public class ContextMenuNode extends OptionScanSelectionNode implements ContextM
                 viewList.add(buttonForAction);
             }
         }
-
+        Log.v(TAG, "ShowSelections, ");
         overlayController.addViewAndShow(menuLayout);
 
         /**

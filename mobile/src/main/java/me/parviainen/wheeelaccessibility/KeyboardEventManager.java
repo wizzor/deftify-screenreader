@@ -19,6 +19,7 @@ package me.parviainen.wheeelaccessibility;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 // import com.android.talkback.R;
 
@@ -35,6 +36,8 @@ import java.util.List;
 public class KeyboardEventManager {
 
     private final List<KeyboardAction> mKeyboardActions = new ArrayList<>();
+
+    private final String TAG = "WAS-OptionManager";
 
     public KeyboardEventManager(final SwitchAccessService service,
             final OptionManager optionManager, final AutoScanController autoScanController) {
@@ -143,6 +146,8 @@ public class KeyboardEventManager {
 
     public boolean onKeyEvent(KeyEvent keyEvent, ActionProcessor actionProcessor,
             KeyboardAction.KeyboardActionListener keyboardActionListener) {
+        Log.v(TAG, "onKeyEvent");
+        Log.w(TAG,"FUUUCK");
         for (KeyboardAction keyboardAction : mKeyboardActions) {
             if (keyboardAction.onKeyEvent(keyEvent, actionProcessor, keyboardActionListener)) {
                 return true;

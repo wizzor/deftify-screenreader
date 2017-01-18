@@ -24,11 +24,13 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 
 import me.parviainen.wheeelaccessibility.R;
 import me.parviainen.wheeelaccessibility.utils.SharedPreferencesUtils;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -59,6 +61,8 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
     private boolean mOptionScanningEnabled = false;
     private ScanListener mScanListener;
     private boolean mStartScanAutomatically = false;
+
+    private final String TAG = "WAS-OptionManager";
 
     /**
      * @param overlayController The controller for the overlay on which to present options
@@ -100,6 +104,7 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
      * @param newTreeRoot The root of the tree to traverse next
      */
     public void clearFocusIfNewTree(OptionScanNode newTreeRoot) {
+        Log.d(TAG, "onNodeFocused - clearFocusIfNewTree");
         if (mRootNode == newTreeRoot) {
             return;
         }
@@ -124,6 +129,7 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
 
 
     public void resetFocusToNewTree(OptionScanNode newTreeRoot) {
+        Log.v(TAG, "ResetFocusToNewTree");
         if (mRootNode == newTreeRoot) {
             return;
         }
@@ -148,6 +154,7 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
      * negative values or those above the index of the last child, cause focus to be reset.
      */
     public void selectOption(int optionIndex) {
+        Log.v(TAG, "selectOption");
         if (optionIndex < 0) {
             clearFocus();
             return;
@@ -155,10 +162,12 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
 
         /* Move to desired node */
         if (mCurrentNode == null) {
+            Log.v(TAG, "selectOption - mCurrentNode null");
             if (mScanListener != null) {
                 mScanListener.onScanStart();
             }
             mCurrentNode = mRootNode;
+            Log.v(TAG, "selectOption - mCurrentNode set to RootNode: " + mCurrentNode.toString());
         } else {
             if (!(mCurrentNode instanceof OptionScanSelectionNode)) {
                 /* This should never happen */
@@ -167,13 +176,16 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
             }
             OptionScanSelectionNode selectionNode = (OptionScanSelectionNode) mCurrentNode;
             if (optionIndex >= selectionNode.getChildCount()) {
+                Log.v(TAG, "selectOption- selection offset > children count");
                 // User pressed an option-scan switch for an index greater than this node's order
                 if (mScanListener != null) {
                     mScanListener.onScanCompletedWithNoSelection();
                 }
                 clearFocus();
+                Log.v(TAG, "selectOption - mCurrentNode: " + mCurrentNode.toString());
                 return;
             }
+            Log.v(TAG, "selectOption - getChild, arg: " + optionIndex);
             mCurrentNode = selectionNode.getChild(optionIndex);
         }
 
@@ -299,6 +311,7 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
     }
 
     private void clearFocus() {
+        Log.v(TAG, "clearFocus");
         mCurrentNode = null;
         mOverlayController.clearOverlay();
         for (OptionManagerListener listener : mOptionManagerListeners) {
@@ -307,21 +320,28 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
     }
 
     private void onNodeFocused() {
+        Log.v(TAG, "OnNodeFocused");
+        Log.v(TAG, "onNodeFocused - mCurrentNode: " + mCurrentNode.toString());
         if (mScanListener != null) {
             if (mCurrentNode instanceof ClearFocusNode) {
+                Log.v(TAG, "selectOption - Scan completed, no selection, mCurrentNode is ClearFocusNode");
                 mScanListener.onScanCompletedWithNoSelection();
             } else if (mCurrentNode instanceof OptionScanActionNode) {
+                Log.v(TAG, "selectOption - ScanSelection: mCurrentNode OptionScanActionNode");
                 mScanListener.onScanSelection();
             } else {
+                Log.v(TAG, "selectOption - ScanFocus Changed");
                 mScanListener.onScanFocusChanged();
             }
         }
+        Log.v(TAG, "OnNodeFocused - PerformAction");
         mCurrentNode.performAction();
 
         /* TODO Any items that we want drawn on the screen could be directly grouped
          * into option groups when the tree is being constructed. That way the drawing of the
          * button or any other items would be data driven. */
         if (mCurrentNode instanceof OptionScanSelectionNode) {
+            Log.v(TAG, "OnNodeFocused - ClearOverlay");
             mOverlayController.clearOverlay();
             final OptionScanSelectionNode selectionNode = (OptionScanSelectionNode) mCurrentNode;
             if (mOptionScanningEnabled) {
@@ -337,9 +357,16 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
                     }
                 });
             } else {
+                Log.v(TAG, "onNodeFocused - Showing Selections (selection node)");
+                int scrollDirection = selectionNode.shouldScroll(selectionNode.getScrollableParent(findCurrentlyActiveNode()));
+                if(scrollDirection == 4096){
+                    performScrollAction(scrollDirection);
+                }
+
                 selectionNode.showSelections(mOverlayController, mOptionPaintArray);
             }
         } else {
+            Log.v(TAG, "OnNodeFocused - Clearing focus, mCurrentNode not instance of OptionScanSelectionNode");
             clearFocus();
         }
     }

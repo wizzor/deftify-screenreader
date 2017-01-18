@@ -149,6 +149,7 @@ public class SwitchAccessNodeCompat extends AccessibilityNodeInfoCompat {
         visibleBoundsInScreen.set(mVisibleBoundsInScreen);
     }
 
+
     /**
      * Check if this node has been found to have bounds matching an ancestor, which means it gets
      * special treatment during traversal.
