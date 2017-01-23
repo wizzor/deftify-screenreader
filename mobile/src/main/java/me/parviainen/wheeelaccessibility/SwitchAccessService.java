@@ -19,6 +19,7 @@ package me.parviainen.wheeelaccessibility;
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
@@ -61,6 +62,8 @@ public class SwitchAccessService extends AccessibilityService
     private AutoScanController mAutoScanController;
     private KeyboardEventManager mKeyboardEventManager;
     private MainTreeBuilder mMainTreeBuilder;
+
+    private KeyboardStateBroadcastReceiver kbReceiver;
 
     static final String TAG = "WheeelAccSRV-2";
 
@@ -130,6 +133,9 @@ public class SwitchAccessService extends AccessibilityService
         mMainTreeBuilder = new MainTreeBuilder(this);
         mAutoScanController = new AutoScanController(mOptionManager, new Handler(), this);
         mKeyboardEventManager = new KeyboardEventManager(this, mOptionManager, mAutoScanController);
+        IntentFilter filter = new IntentFilter("me.parviainen.visa.simplekeyboard.KeyboardStateBroadcast");
+        kbReceiver = new KeyboardStateBroadcastReceiver(this);
+        registerReceiver(kbReceiver, filter);
         //mAnalytics = new Analytics();
         //mAnalytics.start();
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
@@ -197,5 +203,9 @@ public class SwitchAccessService extends AccessibilityService
         /*mOptionManager.clearFocusIfNewTree(mMainTreeBuilder.addWindowListToTree(
                 SwitchAccessWindowInfo.convertZOrderWindowList(getWindows()),
                 globalContextMenuTree));*/
+    }
+
+    public void setKeyboardVisible(boolean kbStateInput){
+        this.mKeyboardEventManager.setKeyboardVisible(kbStateInput);
     }
 }

@@ -10,13 +10,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/TalkBackSettings">
-        <receiver android:name=".KeyboardStateBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.pkg.perform.Ruby" />
-            </intent-filter>
-        </receiver>
 
 
         <service android:name=".SwitchAccessService"

@@ -37,7 +37,8 @@ public class KeyboardEventManager {
 
     private final List<KeyboardAction> mKeyboardActions = new ArrayList<>();
 
-    private final String TAG = "WAS-OptionManager";
+    private final String TAG = "WAS-KeyboardEventMgr";
+    private boolean keyboardVisible = false;
 
     public KeyboardEventManager(final SwitchAccessService service,
             final OptionManager optionManager, final AutoScanController autoScanController) {
@@ -147,13 +148,11 @@ public class KeyboardEventManager {
     public boolean onKeyEvent(KeyEvent keyEvent, ActionProcessor actionProcessor,
             KeyboardAction.KeyboardActionListener keyboardActionListener) {
         Log.v(TAG, "onKeyEvent");
-        Log.w(TAG,"FUUUCK");
 
         /* TODO: WIP, we will set this later via a broadcast receiver, now it is here just for testing
         ** When set to true, keyboard control should not work in apps, but should work in On Screen Keyboard
         */
 
-        boolean keyboardVisible = true;
         if(keyboardVisible == false) {
             for (KeyboardAction keyboardAction : mKeyboardActions) {
                 if (keyboardAction.onKeyEvent(keyEvent, actionProcessor, keyboardActionListener)) {
@@ -175,5 +174,10 @@ public class KeyboardEventManager {
         for (KeyboardAction keyboardAction : mKeyboardActions) {
             keyboardAction.refreshPreferences(context);
         }
+    }
+
+    public void setKeyboardVisible(boolean keyboardVisibleInput){
+        Log.v(TAG, "Set keyboard visibility: "+keyboardVisibleInput);
+        keyboardVisible = keyboardVisibleInput;
     }
 }

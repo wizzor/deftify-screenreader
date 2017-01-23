@@ -1,8 +1,10 @@
 package me.parviainen.wheeelaccessibility;
 
+import android.accessibilityservice.AccessibilityService;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by visa on 23.1.2017.
@@ -13,11 +15,32 @@ import android.content.Context;
 
 public class KeyboardStateBroadcastReceiver extends BroadcastReceiver {
 
+    private SwitchAccessService as;
+    private final String TAG = "KBStateBcastRec";
+
+    public KeyboardStateBroadcastReceiver(SwitchAccessService as_initial){
+        as = as_initial;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO Auto-generated method stub
 
-
+        String state = intent.getStringExtra("state");
+        Log.v(TAG, "KB Broadcast received");
+        switch(state) {
+            case "ACTIVE": {
+                as.setKeyboardVisible(true);
+                break;
+            }
+            case "INACTIVE": {
+                as.setKeyboardVisible(false);
+                break;
+            }
+            default:{
+                Log.v(TAG, "Unknown state for keyboard");
+                break;
+            }
+        }
 
     }
 
