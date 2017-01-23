@@ -148,10 +148,20 @@ public class KeyboardEventManager {
             KeyboardAction.KeyboardActionListener keyboardActionListener) {
         Log.v(TAG, "onKeyEvent");
         Log.w(TAG,"FUUUCK");
-        for (KeyboardAction keyboardAction : mKeyboardActions) {
-            if (keyboardAction.onKeyEvent(keyEvent, actionProcessor, keyboardActionListener)) {
-                return true;
+
+        /* TODO: WIP, we will set this later via a broadcast receiver, now it is here just for testing
+        ** When set to true, keyboard control should not work in apps, but should work in On Screen Keyboard
+        */
+
+        boolean keyboardVisible = true;
+        if(keyboardVisible == false) {
+            for (KeyboardAction keyboardAction : mKeyboardActions) {
+                if (keyboardAction.onKeyEvent(keyEvent, actionProcessor, keyboardActionListener)) {
+                    return true;
+                }
             }
+        }else{
+            Log.w(TAG,"Keyboard was visible skipping message");
         }
         return false;
     }

@@ -358,8 +358,10 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
                 });
             } else {
                 Log.v(TAG, "onNodeFocused - Showing Selections (selection node)");
-                int scrollDirection = selectionNode.shouldScroll(selectionNode.getScrollableParent(findCurrentlyActiveNode()));
-                if(scrollDirection == 4096){
+                SwitchAccessNodeCompat activeNode = findCurrentlyActiveNode();
+                SwitchAccessNodeCompat ancestorNode = selectionNode.getScrollableParent(activeNode);
+                int scrollDirection = selectionNode.shouldScroll(activeNode, ancestorNode);
+                if(scrollDirection == 4096 || scrollDirection == 8192){
                     performScrollAction(scrollDirection);
                 }
 

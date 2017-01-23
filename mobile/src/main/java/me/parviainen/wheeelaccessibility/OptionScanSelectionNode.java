@@ -18,6 +18,7 @@ package me.parviainen.wheeelaccessibility;
 
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -117,9 +118,19 @@ public class OptionScanSelectionNode implements OptionScanNode {
         return mChildren[index];
     }
 
-    public int shouldScroll(SwitchAccessNodeCompat compat){
-        if(compat != null) {
-            return 4096;
+    public int shouldScroll(SwitchAccessNodeCompat node, SwitchAccessNodeCompat ancestor){
+        Log.d("ASD", "Checking ShouldScroll");
+        if(node !=null && ancestor != null) {
+            if( node.getBoundsCloseToScrollingAncestor(ancestor, null) == false ) {
+                if (node.getBoundsCloseToScrollingAncestor(ancestor, "bottom")) {
+                    Log.d("ASD", "SCROLLING: FORWARD");
+                    return 4096;
+                }
+                if (node.getBoundsCloseToScrollingAncestor(ancestor, "top")) {
+                    Log.d("ASD", "SCROLLING: BACKWARD");
+                    return 8192;
+                }
+            }
         }
         return 0;
     }

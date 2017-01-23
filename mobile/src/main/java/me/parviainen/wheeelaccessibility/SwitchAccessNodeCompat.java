@@ -20,6 +20,7 @@ import android.annotation.TargetApi;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
+import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
 
@@ -172,6 +173,45 @@ public class SwitchAccessNodeCompat extends AccessibilityNodeInfoCompat {
             }
         }
         return mBoundsDuplicateAncestor;
+    }
+
+    public boolean getBoundsCloseToScrollingAncestor(SwitchAccessNodeCompat parent, String direction) {
+        Boolean sameBound;
+        sameBound = false;
+        if (parent == null) {
+            return sameBound;
+        } else {
+            Rect parentBounds = new Rect();
+            Rect myBounds = new Rect();
+            parent.getBoundsInScreen(parentBounds);
+            getBoundsInScreen(myBounds);
+            if(direction == null) {
+                Log.d("ASD", "DIRECTION: NULL");
+                if(myBounds.bottom + 2 >= parentBounds.bottom && parentBounds.top + 2 >= myBounds.top){
+                    sameBound = true;
+                    Log.d("ASD", "DIRECTION: NULL, SETTING SAMEBOUND");
+                }
+            }else {
+                if (direction.equals("top")) {
+                    Log.d("ASD", "DIRECTION: TOP" + parentBounds.top + " " + myBounds.top);
+                    if (parentBounds.top + 5 >= myBounds.top ) {
+                        sameBound = true;
+                    }
+                }
+                if (direction.equals("bottom")) {
+                    Log.d("ASD", "DIRECTION: BOTTOM" + parentBounds.bottom);
+                    if (myBounds.bottom + 5 >= parentBounds.bottom) {
+                        sameBound = true;
+                    }
+                }
+            }
+
+            // For some reason this crashes things, but probably we should not get rid of it...
+           //parent.recycle();
+        }
+        Log.d("ASD", "RETURNING SAMEBOUND");
+        Log.d("ASD", String.valueOf(sameBound));
+        return sameBound;
     }
 
     /**
