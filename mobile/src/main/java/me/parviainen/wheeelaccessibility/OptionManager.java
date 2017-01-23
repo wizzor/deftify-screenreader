@@ -358,12 +358,19 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
                 });
             } else {
                 Log.v(TAG, "onNodeFocused - Showing Selections (selection node)");
-                SwitchAccessNodeCompat activeNode = findCurrentlyActiveNode();
-                SwitchAccessNodeCompat ancestorNode = selectionNode.getScrollableParent(activeNode);
-                int scrollDirection = selectionNode.shouldScroll(activeNode, ancestorNode);
-                if(scrollDirection == 4096 || scrollDirection == 8192){
-                    performScrollAction(scrollDirection);
+                OptionScanNode child = ((OptionScanSelectionNode) mCurrentNode).getChild(0);
+                if( child instanceof AccessibilityNodeActionNode) {
+                    Log.v(TAG, "Found AccessibilityNodeActionNode");
+                    SwitchAccessNodeCompat activeNode = ((AccessibilityNodeActionNode) child).getNodeInfoCompat();
+                    SwitchAccessNodeCompat ancestorNode = selectionNode.getScrollableParent(activeNode);
+                    int scrollDirection = selectionNode.shouldScroll(activeNode, ancestorNode);
+                    if (scrollDirection == 4096 || scrollDirection == 8192) {
+                        performScrollAction(scrollDirection);
+                    }
+                    activeNode.recycle();
+
                 }
+
 
                 selectionNode.showSelections(mOverlayController, mOptionPaintArray);
             }

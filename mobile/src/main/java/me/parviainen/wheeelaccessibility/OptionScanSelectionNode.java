@@ -51,6 +51,7 @@ public class OptionScanSelectionNode implements OptionScanNode {
 
     @Override
     public Set<Rect> getRectsForNodeHighlight() {
+
         Set<Rect> rects = new HashSet<>();
         for (OptionScanNode child : mChildren) {
             rects.addAll(child.getRectsForNodeHighlight());
@@ -120,7 +121,10 @@ public class OptionScanSelectionNode implements OptionScanNode {
 
     public int shouldScroll(SwitchAccessNodeCompat node, SwitchAccessNodeCompat ancestor){
         Log.d("ASD", "Checking ShouldScroll");
+
         if(node !=null && ancestor != null) {
+            Log.v("asd", "onNodeFocused - node: " + node.toString());
+            Log.v("asd", "onNodeFocused - ancestor: " + ancestor.toString());
             if( node.getBoundsCloseToScrollingAncestor(ancestor, null) == false ) {
                 if (node.getBoundsCloseToScrollingAncestor(ancestor, "bottom")) {
                     Log.d("ASD", "SCROLLING: FORWARD");
@@ -141,7 +145,6 @@ public class OptionScanSelectionNode implements OptionScanNode {
                 return compat;
             }
             SwitchAccessNodeCompat parent = compat.getParent();
-            compat.recycle();
             compat = parent;
         }
         return null;
