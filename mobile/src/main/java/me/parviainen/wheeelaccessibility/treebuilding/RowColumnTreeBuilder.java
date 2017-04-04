@@ -40,14 +40,15 @@ import java.util.TreeMap;
  */
 public class RowColumnTreeBuilder extends BinaryTreeBuilder {
     /* Any rows shorter than this should just be linearly scanned */
-    private static int MIN_NODES_PER_ROW = 3;
+    private static int MIN_NODES_PER_ROW = 10;
 
     private static final Comparator<RowBounds> ROW_BOUNDS_COMPARATOR = new Comparator<RowBounds>() {
         @Override
         public int compare(RowBounds rowBounds, RowBounds t1) {
             if (rowBounds.mTop != t1.mTop) {
                 /* Want higher y coords to be traversed later */
-                return  t1.mTop - rowBounds.mTop;
+                return (t1.mTop+t1.mBottom)/2*10-t1.mLeft; //10 is a sufficiently high number, it can be 100, 1000, …
+                //return  ((t1.mTop + t1.mBottom)/2) - ((rowBounds.mTop + rowBounds.mBottom)/2);
             }
             /* Want larger views to be traversed earlier */
             return rowBounds.mBottom - t1.mBottom;
@@ -55,11 +56,13 @@ public class RowColumnTreeBuilder extends BinaryTreeBuilder {
     };
 
     private static class RowBounds {
-        private final int mTop, mBottom;
+        private final int mTop, mBottom, mLeft, mRight;
 
-        public RowBounds(int top, int bottom) {
+        public RowBounds(int top, int bottom, int left, int right) {
             mTop = top;
             mBottom = bottom;
+            mLeft = left;
+            mRight = right;
         }
 
         @Override
@@ -128,7 +131,7 @@ public class RowColumnTreeBuilder extends BinaryTreeBuilder {
                  * Use negative value so traversal will start with the last elements, so the first
                  * ones end up at the top of the tree.
                  */
-                RowBounds rowBounds = new RowBounds(boundsInScreen.top, boundsInScreen.bottom);
+                RowBounds rowBounds = new RowBounds(boundsInScreen.top, boundsInScreen.bottom, boundsInScreen.left, boundsInScreen.right);
                 SortedMap<Integer, SwitchAccessNodeCompat> mapOfNodes =
                         nodesByXYCoordinate.get(rowBounds);
                 if (mapOfNodes == null) {
