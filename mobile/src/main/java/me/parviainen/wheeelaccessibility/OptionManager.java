@@ -363,7 +363,7 @@ public class OptionManager implements SharedPreferences.OnSharedPreferenceChange
                     Log.v(TAG, "Found AccessibilityNodeActionNode");
                     SwitchAccessNodeCompat activeNode = ((AccessibilityNodeActionNode) child).getNodeInfoCompat();
                     SwitchAccessNodeCompat ancestorNode = selectionNode.getScrollableParent(activeNode);
-                    int scrollDirection = selectionNode.shouldScroll(activeNode, ancestorNode);
+                    int scrollDirection = 0; //selectionNode.shouldScroll(activeNode, ancestorNode);
                     if (scrollDirection == 4096 || scrollDirection == 8192) {
                         performScrollAction(scrollDirection);
                     }

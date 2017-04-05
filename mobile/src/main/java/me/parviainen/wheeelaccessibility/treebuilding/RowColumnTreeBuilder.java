@@ -18,6 +18,7 @@ package me.parviainen.wheeelaccessibility.treebuilding;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.util.Log;
 
 import me.parviainen.wheeelaccessibility.ClearFocusNode;
 import me.parviainen.wheeelaccessibility.OptionScanNode;
@@ -41,14 +42,18 @@ import java.util.TreeMap;
 public class RowColumnTreeBuilder extends BinaryTreeBuilder {
     /* Any rows shorter than this should just be linearly scanned */
     private static int MIN_NODES_PER_ROW = 10;
+    private static String TAG = "RCTreeB";
 
     private static final Comparator<RowBounds> ROW_BOUNDS_COMPARATOR = new Comparator<RowBounds>() {
         @Override
         public int compare(RowBounds rowBounds, RowBounds t1) {
             if (rowBounds.mTop != t1.mTop) {
                 /* Want higher y coords to be traversed later */
-                return (t1.mTop+t1.mBottom)/2*10-t1.mLeft; //10 is a sufficiently high number, it can be 100, 1000, …
+                //return (t1.mTop+t1.mBottom)/2*10-t1.mLeft; //10 is a sufficiently high number, it can be 100, 1000, …
                 //return  ((t1.mTop + t1.mBottom)/2) - ((rowBounds.mTop + rowBounds.mBottom)/2);
+               // return (10000-(rowBounds.mTop * 10 + ((t1.mTop + t1.mBottom)/2) * 10 + ((t1.mLeft + t1.mRight)/2) * 9));
+                Log.d(TAG, "Comparing: Row: T: "+rowBounds.mTop+" B: " + rowBounds.mBottom + ", Object. T:"+t1.mTop+" R:"+t1.mRight +" B: "+ t1.mBottom + " L: " + t1.mLeft);
+                return rowBounds.mTop*11+t1.mTop * 10 + t1.mLeft * 9;
             }
             /* Want larger views to be traversed earlier */
             return rowBounds.mBottom - t1.mBottom;
@@ -132,6 +137,7 @@ public class RowColumnTreeBuilder extends BinaryTreeBuilder {
                  * ones end up at the top of the tree.
                  */
                 RowBounds rowBounds = new RowBounds(boundsInScreen.top, boundsInScreen.bottom, boundsInScreen.left, boundsInScreen.right);
+                Log.d(TAG, "Comparing: Row: T: "+rowBounds.mTop+" B: " + rowBounds.mBottom + " L: " + rowBounds.mLeft + " R: " + rowBounds.mRight);
                 SortedMap<Integer, SwitchAccessNodeCompat> mapOfNodes =
                         nodesByXYCoordinate.get(rowBounds);
                 if (mapOfNodes == null) {

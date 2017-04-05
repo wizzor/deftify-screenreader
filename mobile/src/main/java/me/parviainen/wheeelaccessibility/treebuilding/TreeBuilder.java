@@ -50,9 +50,9 @@ public abstract class TreeBuilder implements SharedPreferences.OnSharedPreferenc
     protected static final Set<Integer> FRAMEWORK_ACTIONS = new HashSet<>(Arrays.asList(
             AccessibilityNodeInfoCompat.ACTION_CLICK,
             AccessibilityNodeInfoCompat.ACTION_DISMISS,
-            AccessibilityNodeInfoCompat.ACTION_LONG_CLICK,
-            AccessibilityNodeInfoCompat.ACTION_SCROLL_BACKWARD,
-            AccessibilityNodeInfoCompat.ACTION_SCROLL_FORWARD,
+            //AccessibilityNodeInfoCompat.ACTION_LONG_CLICK,
+            //AccessibilityNodeInfoCompat.ACTION_SCROLL_BACKWARD,
+            //AccessibilityNodeInfoCompat.ACTION_SCROLL_FORWARD,
             AccessibilityNodeInfoCompat.ACTION_NEXT_AT_MOVEMENT_GRANULARITY,
             AccessibilityNodeInfoCompat.ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY));
     protected static final int[] MOVEMENT_GRANULARITIES_ONE_LINE = {
